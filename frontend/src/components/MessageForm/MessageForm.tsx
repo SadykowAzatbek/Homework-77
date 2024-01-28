@@ -3,7 +3,7 @@ import { Button, Grid, TextField } from '@mui/material';
 import FileInput from '../UI/FileInput';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { addMessage, cleanInput, selectMessageData } from '@/components/store/messageSlice';
-import { messagePost } from '@/components/store/messagesThunk';
+import { fetchGetMessages, messagePost } from '@/components/store/messagesThunk';
 
 const MessageForm = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +14,7 @@ const MessageForm = () => {
     e.preventDefault();
 
     await dispatch(messagePost());
+    await dispatch(fetchGetMessages());
     dispatch(cleanInput());
   };
 

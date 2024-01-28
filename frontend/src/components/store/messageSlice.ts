@@ -2,12 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@/app/store';
 
 export interface Message {
+  id: string;
   author: string;
   message: string;
   image: string | null;
 }
 
 const initialState: Message = {
+  id: '',
   author: '',
   message: '',
   image: null,
@@ -25,10 +27,11 @@ export const messagesSlice = createSlice({
     cleanInput: (state) => {
       state.author = '';
       state.message = '';
+      state.image = null;
     },
   },
 });
 
-export const messagesReducer = messagesSlice.reducer;
+export const messageReducer = messagesSlice.reducer;
 export const {addMessage, cleanInput} = messagesSlice.actions;
 export const selectMessageData = (state: RootState) => state.messageData;
